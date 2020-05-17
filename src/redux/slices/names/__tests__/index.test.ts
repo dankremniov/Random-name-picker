@@ -2,6 +2,13 @@ import createStore from "../../../createStore";
 import { addName, removeName, selectNames } from "../index";
 
 describe("names slice", () => {
+  describe("when created", () => {
+    it("should not contain any names", () => {
+      const store = createStore();
+
+      expect(selectNames(store.getState())).toEqual([]);
+    });
+  });
   describe("when add name actions are dispatched", () => {
     it("should add payload names to the state", () => {
       const store = createStore();

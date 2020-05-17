@@ -3,11 +3,9 @@ import { RootState } from "../../createStore";
 
 type SliceState = string[];
 
-const initialState: SliceState = [];
-
 const namesSlice = createSlice({
   name: "names",
-  initialState,
+  initialState: [] as SliceState,
   reducers: {
     addName(state, action: PayloadAction<string>) {
       return state.find((n) => n === action.payload)
