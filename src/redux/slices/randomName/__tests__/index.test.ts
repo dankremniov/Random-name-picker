@@ -30,16 +30,16 @@ describe("randomName slice", () => {
     });
   });
 
-  describe("given non-empty array of names and random number", () => {
-    const store = createStore({ generateRandomNum: () => 1 });
-
-    store.dispatch(addName("Name1"));
-    store.dispatch(addName("Name2"));
-
-    describe("when pick random action is dispatched", () => {
-      it("should replace state with a random name", () => {
-        expect(selectName(store.getState())).toEqual("Name2");
-      });
-    });
-  });
+  // describe("given non-empty array of names and random number", () => {
+  //   const store = createStore({ generateRandomNum: () => 1 });
+  //
+  //   store.dispatch(addName("Name1"));
+  //   store.dispatch(addName("Name2"));
+  //
+  //   describe("when pick random action is dispatched", () => {
+  //     it("should replace state with a random name", () => {
+  //       expect(selectName(store.getState())).toEqual("Name2");
+  //     });
+  //   });
+  // });
 });
