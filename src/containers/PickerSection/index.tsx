@@ -1,0 +1,24 @@
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import NamePicker from "../../components/NamePicker";
+import { pickRandomName, selectName } from "../../redux/slices/randomName";
+import { selectNames } from "../../redux/slices/names";
+
+const PickerSection = () => {
+  const randomName = useSelector(selectName);
+  const names = useSelector(selectNames);
+  const dispatch = useDispatch();
+
+  return (
+    <>
+      <h1 data-testid="scene-title">Pick a random name.</h1>
+      <NamePicker
+        name={randomName}
+        disabled={names.length < 2}
+        onClick={() => dispatch(pickRandomName())}
+      />
+    </>
+  );
+};
+
+export default PickerSection;
