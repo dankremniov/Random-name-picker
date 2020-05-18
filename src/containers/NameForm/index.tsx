@@ -12,7 +12,10 @@ const NameForm = ({ onSubmit }: Props) => {
     <NameFormContent
       value={value}
       onChange={(e) => setValue(e.currentTarget.value)}
-      onSubmit={() => onSubmit(value)}
+      onSubmit={() => {
+        onSubmit(value);
+        setValue("");
+      }}
     />
   );
 };

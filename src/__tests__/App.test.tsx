@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, within } from "@testing-library/react";
 import { Provider } from "react-redux";
 import App from "../App";
 import createStore from "../redux/createStore";
@@ -37,36 +37,64 @@ const setup = () => {
 };
 
 describe("App integration", () => {
-  describe("when there are less than two names", () => {
-    it("should display a disabled button, error message and no names in the names list", () => {
-      const { queryAllByTestId, getRandomNameButton, queryByText } = setup();
+  describe("when initialised", () => {
+    it("should not have any names displayed", () => {
+      const { queryAllByTestId } = setup();
 
-      expect(getRandomNameButton()).toBeDisabled();
-      expect(
-        queryByText(/At least two names have to be added/)
-      ).toBeInTheDocument();
       expect(queryAllByTestId("name").length).toBe(0);
+    });
+  });
+
+  describe("when there are less than two names", () => {
+    it("should not allow interaction with pick random name button", () => {
+      const { getRandomNameButton, getRandomName } = setup();
+
+      fireEvent.click(getRandomNameButton());
+      expect(getRandomNameButton()).toBeDisabled();
+      expect(getRandomName()).toHaveTextContent("");
     });
   });
 
   describe("when a name is added and it is unique", () => {
     it("should display the name in the names list", () => {
-      const { getByPlaceholderText, getByText, getByTestId } = setup();
+      const { getByTestId, addName } = setup();
 
-      fireEvent.change(getByPlaceholderText("Please specify name"), {
-        target: { value: "Name1" },
-      });
-      fireEvent.click(getByText("Add"));
+      addName("Name1");
 
       expect(getByTestId("name")).toHaveTextContent("Name1");
     });
   });
 
-  // validation test case
+  describe("when a name is added and it is a duplicate", () => {
+    it("should not add the name to the names list", () => {
+      const { queryAllByTestId, addName } = setup();
 
-  // deletion test case
+      addName("Name1");
+      addName("Name1");
 
-  describe("when there are more than one name and user interacts with pick random name button", () => {
+      expect(queryAllByTestId("name").length).toBe(1);
+    });
+  });
+
+  describe("when delete button next to a name is clicked", () => {
+    it("should remove the name from the names list", () => {
+      const { getByText, queryAllByTestId, addName } = setup();
+
+      addName("Name1");
+      addName("Name2");
+
+      const parent = getByText("Name1").parentElement;
+      if (parent != null) {
+        fireEvent.click(within(parent).getByTestId("delete-name"));
+      }
+
+      expect(queryAllByTestId("name").length).toBe(1);
+      expect(getByText("Name1")).not.toBeInTheDocument();
+      expect(getByText("Name2")).not.toBeInTheDocument();
+    });
+  });
+
+  describe("when there are more than one name and pick random name button is clicked multiple times", () => {
     it("should display random name without repeating it twice in a row", () => {
       const { getRandomNameButton, getRandomName, addName } = setup();
 

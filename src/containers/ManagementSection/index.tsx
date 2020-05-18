@@ -1,12 +1,13 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import NameList from "../../components/NameList";
 import NameForm from "../NameForm";
-import { addName, selectNames } from "../../redux/slices/names";
+import useAppDispatch from "../../redux/useAppDispatch";
+import { addName, removeName, selectNames } from "../../redux/slices/names";
 
 const ManagementSection = () => {
   const names = useSelector(selectNames);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <>
@@ -15,7 +16,12 @@ const ManagementSection = () => {
           dispatch(addName(n));
         }}
       />
-      <NameList names={names} />
+      <NameList
+        names={names}
+        onDelete={(n: string) => {
+          dispatch(removeName(n));
+        }}
+      />
     </>
   );
 };

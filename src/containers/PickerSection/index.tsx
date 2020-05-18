@@ -1,13 +1,14 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import NamePicker from "../../components/NamePicker";
 import { pickRandomName, selectName } from "../../redux/slices/randomName";
+import useAppDispatch from "../../redux/useAppDispatch";
 import { selectNames } from "../../redux/slices/names";
 
 const PickerSection = () => {
   const randomName = useSelector(selectName);
   const names = useSelector(selectNames);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <>
