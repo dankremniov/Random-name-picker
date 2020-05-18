@@ -17,12 +17,10 @@ const { actions, reducer } = namesSlice;
 
 export const { setName } = actions;
 
-export const pickRandom = () => (
+export const pickRandomName = () => (
   state: RootState,
   dispatch: RootDispatch
-) => {
-
-};
+) => {};
 
 export const selectName = (state: RootState) => {
   return state.randomName;

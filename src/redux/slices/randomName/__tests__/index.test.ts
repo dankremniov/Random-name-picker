@@ -36,7 +36,7 @@ describe("randomName slice", () => {
   //   store.dispatch(addName("Name1"));
   //   store.dispatch(addName("Name2"));
   //
-  //   describe("when pick random action is dispatched", () => {
+  //   describe("when pick random name action is dispatched", () => {
   //     it("should replace state with a random name", () => {
   //       expect(selectName(store.getState())).toEqual("Name2");
   //     });

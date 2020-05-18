@@ -1,9 +1,9 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import rootReducer from "./rootReducer";
+import names from "./slices/names";
+import randomName from "./slices/randomName";
+import generateRandomNum from "../utils/generateRandomNum";
 
-const a = () => 1;
-
-const createStore = (api = { generateRandomNum: a }) => {
+const createStore = (api = { generateRandomNum }) => {
   const customizedMiddleware = getDefaultMiddleware({
     thunk: {
       extraArgument: api,
@@ -11,11 +11,15 @@ const createStore = (api = { generateRandomNum: a }) => {
   });
 
   return configureStore({
-    reducer: rootReducer,
+    reducer: {
+      names,
+      randomName,
+    },
   });
 };
 
-export type RootState = ReturnType<typeof rootReducer>;
-export type RootDispatch = ReturnType<typeof configureStore>["dispatch"];
+type Store = ReturnType<typeof createStore>;
+export type RootState = ReturnType<Store["getState"]>;
+export type RootDispatch = Store["dispatch"];
 
 export default createStore;

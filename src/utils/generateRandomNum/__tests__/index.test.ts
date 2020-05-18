@@ -30,7 +30,7 @@ describe("generateRandomNum", () => {
     });
   });
 
-  describe("when given maximum is zero or less and random number is zero", () => {
+  describe("when given maximum is zero and random number is zero", () => {
     it("should return zero", () => {
       expect(generateRandomNum(0, 0)).toBe(0);
     });
