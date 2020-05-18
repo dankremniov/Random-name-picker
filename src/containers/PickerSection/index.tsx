@@ -12,7 +12,6 @@ const PickerSection = () => {
 
   return (
     <>
-      <h1 data-testid="scene-title">Pick a random name.</h1>
       <NamePicker
         name={randomName}
         disabled={names.length < 2}
