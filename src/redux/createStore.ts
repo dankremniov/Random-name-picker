@@ -1,9 +1,9 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import names from "./slices/names";
 import randomName from "./slices/randomName";
-import generateRandomNum from "../utils/generateRandomNum";
+import thunkApi from "./thunkApi";
 
-const createStore = (api = { generateRandomNum }) => {
+const createStore = (api = thunkApi) => {
   const customizedMiddleware = getDefaultMiddleware({
     thunk: {
       extraArgument: api,
@@ -15,11 +15,13 @@ const createStore = (api = { generateRandomNum }) => {
       names,
       randomName,
     },
+    middleware: customizedMiddleware,
   });
 };
 
 type Store = ReturnType<typeof createStore>;
-export type RootState = ReturnType<Store["getState"]>;
+export type GetRootState = Store["getState"];
+export type RootState = ReturnType<GetRootState>;
 export type RootDispatch = Store["dispatch"];
 
 export default createStore;

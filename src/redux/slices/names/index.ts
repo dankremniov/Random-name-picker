@@ -26,4 +26,11 @@ export const selectNames = (state: RootState) => {
   return state.names;
 };
 
+export const selectNameByIndex = (
+  state: RootState,
+  id: number
+): string | undefined => {
+  return selectNames(state)[id];
+};
+
 export default reducer;

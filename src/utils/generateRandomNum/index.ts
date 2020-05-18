@@ -1,6 +1,6 @@
 import randomInt from "random-int";
 
-const generateRandomNum = (max: number, previous: number | null): number => {
+const generateRandomNum = (max: number, previous: number): number => {
   if (max <= 0) {
     return 0;
   }
