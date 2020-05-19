@@ -1,7 +1,7 @@
-import generateRandomNum from "../utils/generateRandomNum";
+import generateUniqueRandom from "../utils/generateUniqueRandom";
 
 const thunkApi = {
-  generateRandomNum,
+  generateUniqueRandom,
 };
 
 export type ThunkApi = typeof thunkApi;

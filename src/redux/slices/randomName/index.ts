@@ -38,7 +38,7 @@ export const pickRandomName = () => (
   const currentName = selectName(state);
   const previousIndex = names.findIndex((n) => n === currentName);
 
-  const randomIndex = api.generateRandomNum(names.length - 1, previousIndex);
+  const randomIndex = api.generateUniqueRandom(names.length - 1, previousIndex);
 
   dispatch(setName(selectNameByIndex(state, randomIndex) || null));
 };

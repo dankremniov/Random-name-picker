@@ -13,13 +13,13 @@ const ManagementSection = () => {
   return (
     <Section title="Add/edit names">
       <NameForm
-        onSubmit={(n: string) => {
+        onSubmit={(n) => {
           dispatch(addName(n));
         }}
       />
       <NameList
         names={names}
-        onDelete={(n: string) => {
+        onDelete={(n) => {
           dispatch(removeName(n));
         }}
       />

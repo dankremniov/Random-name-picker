@@ -31,7 +31,7 @@ describe("randomName slice", () => {
   });
 
   describe("given names slice with length less than two", () => {
-    const store = createStore({ generateRandomNum: () => 1 });
+    const store = createStore({ generateUniqueRandom: () => 1 });
     const initialState = selectName(store.getState());
 
     store.dispatch(addName("Name1"));
@@ -46,7 +46,7 @@ describe("randomName slice", () => {
   });
 
   describe("given names slice with valid length and a random number", () => {
-    const store = createStore({ generateRandomNum: () => 1 });
+    const store = createStore({ generateUniqueRandom: () => 1 });
 
     store.dispatch(addName("Name1"));
     store.dispatch(addName("Name2"));
@@ -61,11 +61,11 @@ describe("randomName slice", () => {
   });
 
   describe("given randomName slice equal to a name which exists in names slice", () => {
-    const generateRandomNumSpy = jest.fn();
+    const generateUniqueRandomSpy = jest.fn();
 
     const store = createStore({
-      generateRandomNum: (max: number, previous: number) => {
-        generateRandomNumSpy(max, previous);
+      generateUniqueRandom: (max: number, previous: number) => {
+        generateUniqueRandomSpy(max, previous);
         return 0;
       },
     });
@@ -78,18 +78,18 @@ describe("randomName slice", () => {
     describe("when pick random name action is dispatched", () => {
       store.dispatch(pickRandomName());
 
-      it("should call generateRandomNum api with the index of the name as previous index", () => {
-        expect(generateRandomNumSpy).toBeCalledWith(1, 0);
+      it("should call generateUniqueRandom api with the index of the name as previous index", () => {
+        expect(generateUniqueRandomSpy).toBeCalledWith(1, 0);
       });
     });
   });
 
   describe("given randomName slice equal to a name which does exist in names slice", () => {
-    const generateRandomNumSpy = jest.fn();
+    const generateUniqueRandomSpy = jest.fn();
 
     const store = createStore({
-      generateRandomNum: (max: number, previous: number) => {
-        generateRandomNumSpy(max, previous);
+      generateUniqueRandom: (max: number, previous: number) => {
+        generateUniqueRandomSpy(max, previous);
         return 0;
       },
     });
@@ -102,8 +102,8 @@ describe("randomName slice", () => {
     describe("when pick random name action is dispatched", () => {
       store.dispatch(pickRandomName());
 
-      it("should call generateRandomNum api with -1 as previous index", () => {
-        expect(generateRandomNumSpy).toBeCalledWith(1, -1);
+      it("should call generateUniqueRandom api with -1 as previous index", () => {
+        expect(generateUniqueRandomSpy).toBeCalledWith(1, -1);
       });
     });
   });
