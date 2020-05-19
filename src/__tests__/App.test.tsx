@@ -78,7 +78,7 @@ describe("App integration", () => {
 
   describe("when delete button next to a name is clicked", () => {
     it("should remove the name from the names list", () => {
-      const { getByText, queryAllByTestId, addName } = setup();
+      const { getByText, queryByText, queryAllByTestId, addName } = setup();
 
       addName("Name1");
       addName("Name2");
@@ -89,8 +89,8 @@ describe("App integration", () => {
       }
 
       expect(queryAllByTestId("name").length).toBe(1);
-      expect(getByText("Name1")).not.toBeInTheDocument();
-      expect(getByText("Name2")).not.toBeInTheDocument();
+      expect(queryByText("Name1")).not.toBeInTheDocument();
+      expect(getByText("Name2")).toBeInTheDocument();
     });
   });
 

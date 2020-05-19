@@ -2,13 +2,16 @@ import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import PickerSection from "./containers/PickerSection";
 import ManagementSection from "./containers/ManagementSection";
+import Layout from "./components/Layout";
 
 const App = () => {
   return (
     <>
       <CssBaseline />
-      <PickerSection />
-      <ManagementSection />
+      <Layout>
+        <PickerSection />
+        <ManagementSection />
+      </Layout>
     </>
   );
 };
