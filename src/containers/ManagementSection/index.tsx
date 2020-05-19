@@ -11,7 +11,7 @@ const ManagementSection = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <Section title="Edit names">
+    <Section title="Add/edit names">
       <NameForm
         onSubmit={(n: string) => {
           dispatch(addName(n));

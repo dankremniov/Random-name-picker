@@ -22,7 +22,7 @@ const setup = () => {
   };
 
   const addName = (n: string) => {
-    fireEvent.change(result.getByPlaceholderText("Please specify name"), {
+    fireEvent.change(result.getByPlaceholderText("Please specify a name"), {
       target: { value: n },
     });
     fireEvent.click(result.getByText("Add"));
@@ -83,9 +83,11 @@ describe("App integration", () => {
       addName("Name1");
       addName("Name2");
 
-      const parent = getByText("Name1").parentElement;
-      if (parent != null) {
-        fireEvent.click(within(parent).getByTestId("delete-name"));
+      const parent = getByText("Name1").closest('[data-testid="name"]');
+      if (parent) {
+        fireEvent.click(
+          within(parent as HTMLElement).getByTestId("delete-name")
+        );
       }
 
       expect(queryAllByTestId("name").length).toBe(1);

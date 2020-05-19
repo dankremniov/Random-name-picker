@@ -16,7 +16,7 @@ describe("NameFormContent", () => {
       />
     );
 
-    expect(getByPlaceholderText("Please specify name")).toHaveValue("Name1");
+    expect(getByPlaceholderText("Please specify a name")).toHaveValue("Name1");
     expect(getByText("Add")).toBeInTheDocument();
   });
 });
