@@ -9,3 +9,10 @@ It should also fit the following criteria:
 - Includes some form of state management
 - Compiled code should run on Internet Explorer 11+
 - Should utilise Webpack
+
+### Technical decisions made
+To fulfil the requirements, several technical decisions were made:
+- Redux state management was implemented using Redux Toolkit
+- The application logic and presentation were covered by integration and unit tests using Jest
+- Material-UI was used for the presentation
+- A custom Webpack config was used instead of CRA
