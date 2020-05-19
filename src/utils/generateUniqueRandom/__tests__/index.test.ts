@@ -1,14 +1,14 @@
-import randomInt from "random-int";
+import generateRandom from "../../generateRandom";
 import generateUniqueRandom from "../index";
 
-jest.mock("random-int");
+jest.mock("../../generateRandom");
 
-const mockedRandomInt = randomInt as jest.Mock<number>;
+const mockedGenerateRandom = generateRandom as jest.Mock<number>;
 
 describe("generateUniqueRandom", () => {
   describe("when random number is not equal to previous random number", () => {
     it("should return the random number", () => {
-      mockedRandomInt.mockImplementationOnce(() => 2);
+      mockedGenerateRandom.mockImplementationOnce(() => 2);
 
       expect(generateUniqueRandom(5, 1)).toBe(2);
     });
@@ -16,7 +16,7 @@ describe("generateUniqueRandom", () => {
 
   describe("when random number is equal to previous random number", () => {
     it("should return a different random number", () => {
-      mockedRandomInt
+      mockedGenerateRandom
         .mockImplementationOnce(() => 2)
         .mockImplementationOnce(() => 3);
 

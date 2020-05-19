@@ -9,8 +9,9 @@ export default (theme: Theme) =>
       paddingTop: theme.spacing(4),
     },
     name: {
+      maxWidth: "100%",
       minWidth: 280,
-      minHeight: 50,
+      height: 50,
       backgroundColor: theme.palette.grey[100],
       display: "flex",
       alignItems: "center",

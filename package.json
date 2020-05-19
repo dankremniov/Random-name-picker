@@ -29,6 +29,7 @@
     "@typescript-eslint/parser": "^2.33.0",
     "babel-jest": "^26.0.1",
     "babel-loader": "^8.1.0",
+    "core-js": "3",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-react": "^1.1.7",
